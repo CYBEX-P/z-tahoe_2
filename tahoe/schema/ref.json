@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "ref_core",
+  "description" : "Validate core structure of a ref.",
+  "required": ["itype", "ref_type", "ref_from", "ref_to"],
+  "properties": {
+	"itype": {"const" : "ref"},
+    "uuid": { "type": "string", "pattern" : "^ref--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$" },
+	"ref_type": { "enum" : ["attribute","object","event","session","raw"]},
+	"ref_from" : { "type": "string", "pattern" : "^(attribute|object|event|session|raw)--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$"},
+	"ref_to" : { "type": "string", "pattern" : "^(attribute|object|event|session|raw)--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$"}
+  },
+  "additionalProperties": false
+}

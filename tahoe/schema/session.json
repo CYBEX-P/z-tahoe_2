@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "event_core",
+  "description" : "Validate core structure of a session.",
+  "required": ["itype", "uuid", "identifiers"],
+  "properties": {
+	"itype": {"const" : "session"},
+    "uuid": { "type": "string", "pattern" : "^session--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$" },
+	"session_type": { "enum" : ["cowrie_session", "placeholder"]},
+	"identifiers" : {"type" : "array"},
+	"start_time" : {"type" : "number"},
+	"end_time" : {"type" : "number"},
+	"duration" : {"type" : "number"},
+	"_ref": { "type" : "array", "items" : { "type": "string", "pattern" : "^(object|event|raw)--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$"} }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+db.getCollection('instances').find({"itype" : {"$nin" : ["raw"]}})
+db.getCollection('instances').deleteMany({"itype" : {"$nin" : ["raw"]} })
+db.getCollection('instances').find({"filters" : {"$exists" : true}})
+db.getCollection('instances').updateMany({},{"$unset":{"filters": ""}})
+db.getCollection('instances').find({"$and" : [{"raw_type" : "x-unr-honeypot"}, {"filters" : { "$ne": "filter--ad8c8d0c-0b25-4100-855e-06350a59750c" }}, { "data.eventid" : {"$exists":true}}, {"_valid" : {"$ne" : false}}]})
+
+db.getCollection('instances').find({"uuid" : {"$in" : ["event--ec7c0510-310b-49fa-90c6-4d70aa5a0a72","event--ca6e831a-2bb9-4461-acea-9c9f0b13199d"]}})
+
+db.getCollection('instances').find({"uuid" : {"$in" : [
+    "object--960273b7-f457-4243-8d2d-bbcafbe4dd1a",
+    "event--42e33490-2f5d-46d5-98d5-425654c98da9",
+    "event--aa7a99af-3957-4abc-9ac8-d4f2948d77ec",
+    "event--c7e34246-d2d3-4184-9614-2c5ec49d09bc",
+    "event--62796fe5-935e-4eaa-b2ba-ff2c689a3681",
+    "event--235f2aa1-e4eb-42ff-b6d5-0c59e416d483",
+    "event--ffb587d9-0f5d-4618-a0fb-f01a19c87380",
+    "event--64befe6b-169d-41f8-8480-21dce395f14b",
+    "event--14b26f14-daf7-446c-81be-8c2a7c819b27",
+    "event--7413093e-d09d-43f9-a420-20647a0e417f",
+    "event--0fb91c2b-b4a8-4290-95f3-00d424b0dbf2",
+    "event--7a576fd4-793d-4808-8e8e-97ec550616e7",
+    "event--359ae521-f1c8-455f-951d-78b2991b734f",
+    "event--0e2adde6-4dca-46b7-84e3-65e29d37460e",
+    "event--10e9158c-f0af-42e5-b7cb-4cfc42b593d1",
+    "event--49493c44-e294-48f6-b27f-1f7b19e1a0bc",
+    "event--abde9cf5-7673-48b4-9487-fd8dffec5832"
+]}})

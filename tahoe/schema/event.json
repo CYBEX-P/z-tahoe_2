@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "event_core",
+  "description" : "Validate core structure of an event.",
+  "required": ["itype", "orgid", "uuid", "event_type", "objects"],
+  "properties": {
+	"itype": {"const" : "event"},
+    
+	"uuid": { "type": "string", "pattern" : "^event--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$" },
+	
+	"orgid": { "type": "string", "pattern" :   "^identity--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$" },
+	
+	"timestamp": { "type": "number", "minimum": 0 },
+	
+	"event_type": { "enum" : ["email", "file_download", "firewall_log", "misp", "network_traffic", "ssh_client_size", "ssh_key_exchange", "ssh_login", "ssh_version", "test"]},
+	
+	"info" : {"type" : "string"},
+	
+	"objects": { "type" : "array"},
+	
+	"_valid": {"type": "boolean"},
+	
+	"_ref" : { "type" : "array", "items" : { "type": "string", "pattern" : "^(object|session|raw)--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$"} },
+	
+	"malicious" : {"type" : "boolean"},
+	
+	"filters" : {"type" : "array", "items" : { "type": "string", "pattern" : "^filter--[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[89abAB][0-9a-fA-F]{3}\\-[0-9a-fA-F]{12}$" }}
+  },
+  "additionalProperties": false
+}
